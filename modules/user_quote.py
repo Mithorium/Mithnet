@@ -76,7 +76,10 @@ def quote_me(phenny, input):
         phenny.say("Quote added")
     else:
         phenny.say("I'm not convinced %s ever said that." % user)
-quote_me2 = partial(quote_me)
+
+def quote_me2(phenny, input):
+    return quote_me(phenny, input)
+
 quote_me.rule = ('$nick', ['quote'], r'\[?(?:\d\d?:?\s?)*\]?(<[\[\]@+ ]?\S+>|\S+:?)\s+(.*)')
 quote_me2.rule = (['quote'], r'\[?(?:\d\d?:?\s?)*\]?(<[\[\]@+ ]?\S+>|\S+:?)\s+(.*)')
 
@@ -95,7 +98,10 @@ def get_quote(phenny, input):
         get_quote.last_quote, get_quote.last_sender = random.choice(phenny.quotes[nick])
         return phenny.say(_format_quote(nick, get_quote.last_quote))
     return phenny.say("%s has never said anything noteworthy." % input.group(2))
-get_quote2 = partial(get_quote)
+
+def get_quote2(phenny, input):
+    return get_quote(phenny, input)
+
 get_quote.rule = (["quote"], r"(\S+)", r"? *$")
 get_quote2.rule = ('$nick', ["quote"], r"(\S+)? *$")
 
