@@ -78,7 +78,7 @@ def quote_me(phenny, input):
         phenny.say("I'm not convinced %s ever said that." % user)
 
 def quote_me2(phenny, input):
-    if input.group(3) is None or input.group(3).isspace():
+    if input.group(3) is None or input.group(3) == '' or input.group(3).isspace():
         return
     return quote_me(phenny, input)
 
