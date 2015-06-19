@@ -78,6 +78,8 @@ def quote_me(phenny, input):
         phenny.say("I'm not convinced %s ever said that." % user)
 
 def quote_me2(phenny, input):
+    if input.group(3) is None or input.group(3).isspace():
+        return
     return quote_me(phenny, input)
 
 quote_me.rule = ('$nick', ['quote'], r'\[?(?:\d\d?:?\s?)*\]?(<[\[\]@+ ]?\S+>|\S+:?)\s+(.*)')
@@ -99,11 +101,11 @@ def get_quote(phenny, input):
         return phenny.say(_format_quote(nick, get_quote.last_quote))
     return phenny.say("%s has never said anything noteworthy." % input.group(2))
 
-def get_quote2(phenny, input):
-    return get_quote(phenny, input)
+#def get_quote2(phenny, input):
+    #return get_quote(phenny, input)
 
 get_quote.rule = (["quote"], r"(\S+)", r"? *$")
-get_quote2.rule = ('$nick', ["quote"], r"(\S+)? *$")
+#get_quote2.rule = ('$nick', ["quote"], r"(\S+)? *$")
 
 
 def get_quotes(phenny, input):
